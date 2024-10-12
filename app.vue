@@ -58,4 +58,12 @@
   </div>
 </template>
 
-<!--<script setup lang="ts"></script>-->
+<script setup lang="ts">
+useHead({
+  title: 'Мониторинг цен',
+  meta: [
+    { name: 'description', content: 'Мониторинг и анализ цен' },
+    // { name: 'yandex-verification', content: 'b15fe8bd630f2147' }
+  ],
+});
+</script>
