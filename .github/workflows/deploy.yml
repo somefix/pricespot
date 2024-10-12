@@ -1,0 +1,60 @@
+name: deploy
+on:
+  pull_request:
+    types:
+      - closed
+    branches: [main, dev]
+  push:
+    branches: [main, dev]
+
+jobs:
+  build:
+    name: Build project
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name || github.base_ref }}
+    env:
+      BASE_URL: ${{ secrets.FTP_DIRECTORY }}
+#      YANDEX_METRIKA_ID: ${{ secrets.YANDEX_METRIKA_ID }}
+#      GOOGLE_TAG_ID: ${{ secrets.GOOGLE_TAG_ID }}
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: 🔨 Build Project
+        run: |
+          yarn install
+          npm run build
+          npm run generate
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build_artifact
+          path: ./.output/public/
+          retention-days: 1
+  deploy-to-stand:
+    name: Deploy to stand
+    runs-on: ubuntu-latest
+    needs: build
+    environment: ${{ github.ref_name || github.base_ref }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build_artifact
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          protocol: ftps
+          dangerous-clean-slate: true
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: ${{ secrets.FTP_DIRECTORY }}
