@@ -63,7 +63,7 @@ useHead({
   title: 'Мониторинг цен',
   meta: [
     { name: 'description', content: 'Мониторинг и анализ цен' },
-    // { name: 'yandex-verification', content: 'b15fe8bd630f2147' }
+    { name: 'yandex-verification', content: '33c3912e70b35d1f' }
   ],
 });
 

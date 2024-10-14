@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: 'Мониторинг и анализ цен' },
-        // { name: 'yandex-verification', content: 'b15fe8bd630f2147' },
+        { name: 'yandex-verification', content: '33c3912e70b35d1f' },
       ],
     },
     baseURL: process.env?.BASE_URL ?? '/',
