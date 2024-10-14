@@ -14,7 +14,7 @@ jobs:
     environment: ${{ github.ref_name || github.base_ref }}
     env:
       BASE_URL: ${{ secrets.FTP_DIRECTORY }}
-#      YANDEX_METRIKA_ID: ${{ secrets.YANDEX_METRIKA_ID }}
+      YANDEX_METRIKA_ID: ${{ secrets.YANDEX_METRIKA_ID }}
 #      GOOGLE_TAG_ID: ${{ secrets.GOOGLE_TAG_ID }}
     steps:
       - name: 🚚 Get latest code
