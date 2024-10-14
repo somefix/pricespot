@@ -1,1 +1,3 @@
-
+User-Agent: *
+Allow: /
+Sitemap: https://pricespot.ru/sitemap.xml

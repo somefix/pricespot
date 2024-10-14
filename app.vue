@@ -48,7 +48,7 @@
               <p class="text-gray-900">Хотите получить информацию о ценах?</p>
               <p>
 <!--                ссылка для создания писма на корпоративную почту-->
-                <a href="https://pricespot.ru" class="text-sky-500 hover:text-sky-600">Напишите нам &rarr;</a>
+                <a @click="mailTo" class="text-sky-500 hover:text-sky-600 cursor-pointer">Напишите нам &rarr;</a>
               </p>
             </div>
           </div>
@@ -58,4 +58,18 @@
   </div>
 </template>
 
-<!--<script setup lang="ts"></script>-->
+<script setup lang="ts">
+useHead({
+  title: 'Мониторинг цен',
+  meta: [
+    { name: 'description', content: 'Мониторинг и анализ цен' },
+    // { name: 'yandex-verification', content: 'b15fe8bd630f2147' }
+  ],
+});
+
+function mailTo() {
+  const subject = "Хочу получить информацию о ценах";
+
+  window.open(`mailto:info@pricespot.ru?subject=${subject}`);
+}
+</script>
