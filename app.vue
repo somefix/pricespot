@@ -70,6 +70,6 @@ useHead({
 function mailTo() {
   const subject = "Хочу получить информацию о ценах";
 
-  window.open(`mailto:grigoriev.biz@gmail.com?subject=${subject}`);
+  window.open(`mailto:info@pricespot.ru?subject=${subject}`);
 }
 </script>
